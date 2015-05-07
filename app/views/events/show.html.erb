@@ -1,13 +1,27 @@
 <div class="row">
   <div class="col-md-8 col-offset-md-2">
-  <h2> <%=@event.topic%> </h2>
 
-  <p><%= link_to "#{@baby.name}'s Profile", baby_path(@baby) %></p>
-  <p><%= link_to "Back to Timeline", baby_events_path %></p>
+    <h2> <%=@event.topic%> </h2>
 
-  <div class="container">
-    <p> <%=@event.body%> </p>
-    <p> <%=@event.date%> </p>
+    <p><%= link_to "#{@baby.name}'s Profile", baby_path(@baby) %></p>
+    <p><%= link_to "Back to Timeline", baby_events_path %></p>
+
+    <div class="container">
+      <p> <%=@event.body%> </p>
+      <p> <%=@event.date%> </p>
+    </div>
+
+    <!-- Images -->
+
+    <%= link_to "add Pic", new_baby_event_medium_path(@baby, @event), :class => "btn btn-primary" %>
+
+    <% @media.each do |image| %>
+
+      <img src="<%= image.testurl %>">
+
+    <% end %>
+
+
+
   </div>
-
 </div>
