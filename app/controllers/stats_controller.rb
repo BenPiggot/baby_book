@@ -9,9 +9,9 @@ class StatsController < ApplicationController
     @baby = Baby.find(params[:baby_id])
   end
 
-  def show
-    @stat = Stat.find(params[:id])
-  end
+  # def show
+  #   @stat = Stat.find(params[:id])
+  # end
 
   def create
     @baby = Baby.find(params[:baby_id])
