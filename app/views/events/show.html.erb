@@ -15,12 +15,12 @@
 
     <%= link_to "add Pic", new_baby_event_medium_path(@baby, @event), :class => "btn btn-primary" %>
 
+
     <% @media.each do |image| %>
 
       <img style="width:200px;" src="<%= image.testurl %>">
 
     <% end %>
-
 
 
   </div>

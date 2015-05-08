@@ -2,6 +2,28 @@
 
 class ImageUploader < CarrierWave::Uploader::Base
 
+  include Cloudinary::CarrierWave
+
+  def cache_dir
+    "#{Rails.root}/tmp/uploads"
+  end
+
+  process :convert => 'png'
+  process :tags => ['post_picture']
+
+
+  # not quite sure how this stuff works yet
+  version :standard do
+    process :eager => true
+    process :resize_to_fill => [100, 150, :north]
+  end
+
+  version :thumbnail do
+    eager
+    resize_to_fit(50, 50)
+  end
+
+
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick

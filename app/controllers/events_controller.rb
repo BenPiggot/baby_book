@@ -18,6 +18,11 @@ class EventsController < ApplicationController
 
 
     def show
+
+      # images for specific events
+      @media = Event.find(params[:id]).media
+
+
       baby_id = (params[:baby_id]).to_i
 
       if current_user.babies.ids.include?(baby_id)
@@ -28,8 +33,6 @@ class EventsController < ApplicationController
         redirect_to root_path
       end
 
-      #images
-      @media = Medium.all
 
     end
 

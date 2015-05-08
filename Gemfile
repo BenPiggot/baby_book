@@ -37,7 +37,8 @@ gem 'omniauth-facebook'
 
 # CarrierWave for image upload
 gem 'carrierwave'
-gem 'rmagick'
+# gem 'rmagick'
+gem 'cloudinary'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

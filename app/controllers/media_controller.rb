@@ -8,10 +8,12 @@ class MediaController < ApplicationController
 
   def create
     @baby = Baby.find(params[:baby_id])
-    # @event = Event.find(params[:event_id])
-    # render :json => medium_params
-    @medium = Medium.create(medium_params)
+
+    # create cloudinary url with specific event_id through carrierwave
+    @event = Event.find(params[:event_id])
+    @event.media.create(medium_params)
     redirect_to baby_events_path(@baby)
+
   end
 
   private
