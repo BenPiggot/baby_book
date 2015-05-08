@@ -1,5 +1,17 @@
 var container = document.getElementById('visualization');
 
+$(function(){
+  $('.item.box').on('click', function(){
+    $("#hidden").slideDown('slow').css("opacity","1")
+  })
+  $("#off").on('click', function() {
+       $("#hidden").slideUp('slow');
+       var url = $('#player').attr('src');
+       $('#player').attr('src', '');
+        $('.blurb').text('')
+  });
+});
+
 document.addEventListener("DOMContentLoaded", function(event) {
 
   // var container = document.getElementById('visualization');
