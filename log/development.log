@@ -9045,3 +9045,1019 @@ Completed 200 OK in 332ms (Views: 273.3ms | ActiveRecord: 2.2ms)
 
 
 Started GET "/assets/baby.jpg" for 127.0.0.1 at 2015-05-08 09:23:09 -0700
+
+
+Started GET "/login" for ::1 at 2015-05-08 10:32:37 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SessionsController#new as HTML
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+  Rendered layouts/_flash.html.erb (1.0ms)
+  Rendered sessions/new.html.erb within layouts/application (116.3ms)
+Completed 200 OK in 1811ms (Views: 1755.6ms | ActiveRecord: 3.6ms)
+
+
+Started POST "/login" for ::1 at 2015-05-08 10:32:49 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"swY8yNt4kcVLDvr8eSa4O5MA0FW2fb4V+N3JceEOHpspUemQdx4UyytI72J5RLip//uBcdlOXlZ3gwCOtccvpw==", "user"=>{"email"=>"svillagracia@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+  [1m[35mUser Load (26.8ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "svillagracia@gmail.com"]]
+Redirected to http://localhost:3000/babies
+Completed 302 Found in 219ms (ActiveRecord: 59.5ms)
+
+
+Started GET "/babies" for ::1 at 2015-05-08 10:32:50 -0700
+Processing by BabiesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mBaby Load (1.0ms)[0m  SELECT "babies".* FROM "babies" WHERE "babies"."user_id" = $1  [["user_id", 1]]
+  Rendered babies/index.html.erb within layouts/application (20.5ms)
+Completed 200 OK in 139ms (Views: 75.6ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/babies/1" for ::1 at 2015-05-08 10:32:52 -0700
+Processing by BabiesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.3ms)[0m  SELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1  [["user_id", 1]]
+  [1m[36mBaby Load (0.4ms)[0m  [1mSELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered babies/show.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 60ms (Views: 54.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/babies/1/events" for ::1 at 2015-05-08 10:32:56 -0700
+Processing by EventsController#index as HTML
+  Parameters: {"baby_id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.3ms)[0m  [1mSELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[35mBaby Load (0.3ms)[0m  SELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  [1m[35mEvent Load (0.9ms)[0m  SELECT "events".* FROM "events" WHERE "events"."baby_id" = $1  [["baby_id", 1]]
+  Rendered events/index.html.erb within layouts/application (15.5ms)
+Completed 200 OK in 115ms (Views: 93.7ms | ActiveRecord: 4.7ms)
+
+
+Started GET "/babies/1/events/1" for ::1 at 2015-05-08 10:32:58 -0700
+Processing by EventsController#show as HTML
+  Parameters: {"baby_id"=>"1", "id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mEvent Load (0.4ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.4ms)[0m  [1mSELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[35mBaby Load (0.4ms)[0m  SELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  [1m[35mMedium Load (0.6ms)[0m  SELECT "media".* FROM "media" WHERE "media"."event_id" = $1  [["event_id", 1]]
+  Rendered events/show.html.erb within layouts/application (56.5ms)
+Completed 200 OK in 136ms (Views: 103.9ms | ActiveRecord: 5.1ms)
+
+
+Started GET "/babies/1/events/1/media/new" for ::1 at 2015-05-08 10:33:05 -0700
+Processing by MediaController#new as HTML
+  Parameters: {"baby_id"=>"1", "event_id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mBaby Load (0.4ms)[0m  SELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered media/new.html.erb within layouts/application (38.7ms)
+Completed 200 OK in 115ms (Views: 110.2ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/babies/1/events/1/media" for ::1 at 2015-05-08 10:33:24 -0700
+Processing by MediaController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"dTvjHNatRPPC1u1Y/5LHtp843KJFDKET1bLjcfCRX1XvbDZEesvB/aKQ+Mb/8Mck88ONhio/QVBa7CqOpFhuaQ==", "medium"=>{"url"=>#<ActionDispatch::Http::UploadedFile:0x007fe163c598f0 @tempfile=#<Tempfile:/var/folders/0s/dgv_f66n7hv5fb1fcsxph3000000gn/T/RackMultipart20150508-6238-jpkou3.jpg>, @original_filename="angryspoelstra.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"medium[url]\"; filename=\"angryspoelstra.jpg\"\r\nContent-Type: image/jpeg\r\n">}, "commit"=>"Create Medium", "baby_id"=>"1", "event_id"=>"1"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mBaby Load (0.8ms)[0m  [1mSELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mEvent Load (0.7ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (36.9ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (172.8ms)[0m  INSERT INTO "media" ("url", "event_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["url", "gdkpm6k5y1bobqm5uzj4"], ["event_id", 1], ["created_at", "2015-05-08 17:33:26.005919"], ["updated_at", "2015-05-08 17:33:26.005919"]]
+  [1m[36m (1014.7ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/babies/1/events/1
+Completed 302 Found in 3188ms (ActiveRecord: 1226.4ms)
+
+
+Started GET "/babies/1/events/1" for ::1 at 2015-05-08 10:33:27 -0700
+Processing by EventsController#show as HTML
+  Parameters: {"baby_id"=>"1", "id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.4ms)[0m  SELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1  [["user_id", 1]]
+  [1m[36mBaby Load (0.4ms)[0m  [1mSELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", "1"]]
+  [1m[36mMedium Load (0.5ms)[0m  [1mSELECT "media".* FROM "media" WHERE "media"."event_id" = $1[0m  [["event_id", 1]]
+  Rendered events/show.html.erb within layouts/application (5.5ms)
+Completed 200 OK in 95ms (Views: 88.1ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/babies/1/events/1" for ::1 at 2015-05-08 10:34:34 -0700
+Processing by EventsController#show as HTML
+  Parameters: {"baby_id"=>"1", "id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.4ms)[0m  SELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1  [["user_id", 1]]
+  [1m[36mBaby Load (0.2ms)[0m  [1mSELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", "1"]]
+  [1m[36mMedium Load (0.6ms)[0m  [1mSELECT "media".* FROM "media" WHERE "media"."event_id" = $1[0m  [["event_id", 1]]
+  Rendered events/show.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 100ms (Views: 92.5ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/assets/style.self-719e76ab7a1bc30a10db74420457ccdc20163b6d602703741608277ef33f4e78.css?body=1" for ::1 at 2015-05-08 10:34:34 -0700
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-05-08 10:34:34 -0700
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-05-08 10:34:34 -0700
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2015-05-08 10:34:34 -0700
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2015-05-08 10:34:34 -0700
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2015-05-08 10:34:34 -0700
+
+
+Started GET "/babies/1/events/1" for ::1 at 2015-05-08 10:34:37 -0700
+Processing by EventsController#show as HTML
+  Parameters: {"baby_id"=>"1", "id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.3ms)[0m  SELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1  [["user_id", 1]]
+  [1m[36mBaby Load (0.2ms)[0m  [1mSELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", "1"]]
+  [1m[36mMedium Load (0.5ms)[0m  [1mSELECT "media".* FROM "media" WHERE "media"."event_id" = $1[0m  [["event_id", 1]]
+  Rendered events/show.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 106ms (Views: 100.7ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/babies" for ::1 at 2015-05-08 10:34:40 -0700
+Processing by BabiesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mBaby Load (0.6ms)[0m  [1mSELECT "babies".* FROM "babies" WHERE "babies"."user_id" = $1[0m  [["user_id", 1]]
+  Rendered babies/index.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 124ms (Views: 121.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/babies/2" for ::1 at 2015-05-08 10:34:43 -0700
+Processing by BabiesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[35mBaby Load (0.2ms)[0m  SELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1  [["id", 2]]
+  Rendered babies/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 58ms (Views: 54.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/babies/2/events" for ::1 at 2015-05-08 10:34:44 -0700
+Processing by EventsController#index as HTML
+  Parameters: {"baby_id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.3ms)[0m  SELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1  [["user_id", 1]]
+  [1m[36mBaby Load (0.2ms)[0m  [1mSELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1  [["id", "2"]]
+  [1m[36mEvent Load (0.5ms)[0m  [1mSELECT "events".* FROM "events" WHERE "events"."baby_id" = $1[0m  [["baby_id", 2]]
+  Rendered events/index.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 54ms (Views: 48.1ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/babies/2/events/2" for ::1 at 2015-05-08 10:34:46 -0700
+Processing by EventsController#show as HTML
+  Parameters: {"baby_id"=>"2", "id"=>"2"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.2ms)[0m  SELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1  [["user_id", 1]]
+  [1m[36mBaby Load (0.3ms)[0m  [1mSELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", "2"]]
+  [1m[36mMedium Load (0.4ms)[0m  [1mSELECT "media".* FROM "media" WHERE "media"."event_id" = $1[0m  [["event_id", 2]]
+  Rendered events/show.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 45ms (Views: 39.3ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/babies/2/events/2/media/new" for ::1 at 2015-05-08 10:34:49 -0700
+Processing by MediaController#new as HTML
+  Parameters: {"baby_id"=>"2", "event_id"=>"2"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mBaby Load (0.2ms)[0m  [1mSELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mEvent Load (0.2ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", 2]]
+  Rendered media/new.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 67ms (Views: 63.7ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/babies/2/events/2/media" for ::1 at 2015-05-08 10:34:58 -0700
+Processing by MediaController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ZbupuXlamgvZrJKtuHIwcnT5qjHkuguWcv6IqY54C8D/7Hzh1TwfBbnqhzO4EDDgGAL7FYuJ69X9oEFW2rE6/A==", "medium"=>{"url"=>#<ActionDispatch::Http::UploadedFile:0x007fe16336aeb0 @tempfile=#<Tempfile:/var/folders/0s/dgv_f66n7hv5fb1fcsxph3000000gn/T/RackMultipart20150508-6238-sp8slv.png>, @original_filename="aliquote.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"medium[url]\"; filename=\"aliquote.png\"\r\nContent-Type: image/png\r\n">}, "commit"=>"Create Medium", "baby_id"=>"2", "event_id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mBaby Load (0.6ms)[0m  SELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mEvent Load (0.4ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "media" ("url", "event_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["url", "zbdfbkzzzpx20shqvetl"], ["event_id", 2], ["created_at", "2015-05-08 17:35:00.094188"], ["updated_at", "2015-05-08 17:35:00.094188"]]
+  [1m[35m (53.8ms)[0m  COMMIT
+Redirected to http://localhost:3000/babies/2/events/2
+Completed 302 Found in 1180ms (ActiveRecord: 56.2ms)
+
+
+Started GET "/babies/2/events/2" for ::1 at 2015-05-08 10:35:00 -0700
+Processing by EventsController#show as HTML
+  Parameters: {"baby_id"=>"2", "id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mEvent Load (0.2ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36m (0.2ms)[0m  [1mSELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[35mBaby Load (0.2ms)[0m  SELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", "2"]]
+  [1m[35mMedium Load (0.6ms)[0m  SELECT "media".* FROM "media" WHERE "media"."event_id" = $1  [["event_id", 2]]
+  Rendered events/show.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 66ms (Views: 60.5ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/logout" for ::1 at 2015-05-08 10:35:04 -0700
+Processing by SessionsController#destroy as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Redirected to http://localhost:3000/login
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/login" for ::1 at 2015-05-08 10:35:04 -0700
+Processing by SessionsController#new as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+  Rendered layouts/_flash.html.erb (0.2ms)
+  Rendered sessions/new.html.erb within layouts/application (11.6ms)
+Completed 200 OK in 116ms (Views: 113.4ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/login" for ::1 at 2015-05-08 10:35:08 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ITPh6XsLjH9LEVLxm+nqozQ5Vu+3gNM/+n7yRKwSl5C7ZDSx120JcStXR2+bi+oxWMIHy9izM3x1IDu7+NumrA==", "user"=>{"email"=>"test@test.com", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "test@test.com"]]
+  Rendered layouts/_flash.html.erb (0.3ms)
+  Rendered sessions/new.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 150ms (Views: 41.6ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/login" for ::1 at 2015-05-08 10:35:17 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+0rggoik93QIT5R6jzOCDCjxY0DwbCvk6VWnM4y+hLJhHTXaJMJyemgJgeSPUYKeRAoyZJ9fy6dmC27M2He1jg==", "user"=>{"email"=>"test@test.com", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "test@test.com"]]
+  Rendered layouts/_flash.html.erb (0.0ms)
+  Rendered sessions/new.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 148ms (Views: 47.1ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/login" for ::1 at 2015-05-08 10:35:23 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"vfynjK+5jQJ+NPdlEaOcygBS7djqB0M7uMNOVhg21jgnq3LUA98IDB5y4vsRwZxYbKm8/IU0o3g3nYepTP/nBA==", "user"=>{"email"=>"test@test.com", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "test@test.com"]]
+Redirected to http://localhost:3000/babies
+Completed 302 Found in 92ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/babies" for ::1 at 2015-05-08 10:35:23 -0700
+Processing by BabiesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mBaby Load (0.6ms)[0m  SELECT "babies".* FROM "babies" WHERE "babies"."user_id" = $1  [["user_id", 2]]
+  Rendered babies/index.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 70ms (Views: 67.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/babies/4/events" for ::1 at 2015-05-08 10:35:25 -0700
+Processing by EventsController#index as HTML
+  Parameters: {"baby_id"=>"4"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.2ms)[0m  SELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1  [["user_id", 2]]
+  [1m[36mBaby Load (0.2ms)[0m  [1mSELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1  [["id", "4"]]
+  [1m[36mEvent Load (0.4ms)[0m  [1mSELECT "events".* FROM "events" WHERE "events"."baby_id" = $1[0m  [["baby_id", 4]]
+  Rendered events/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 55ms (Views: 51.3ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/babies/4/events/5" for ::1 at 2015-05-08 10:35:26 -0700
+Processing by EventsController#show as HTML
+  Parameters: {"baby_id"=>"4", "id"=>"5"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mEvent Load (0.3ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  [1m[35m (0.3ms)[0m  SELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1  [["user_id", 2]]
+  [1m[36mBaby Load (0.3ms)[0m  [1mSELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", "5"]]
+  [1m[36mMedium Load (0.3ms)[0m  [1mSELECT "media".* FROM "media" WHERE "media"."event_id" = $1[0m  [["event_id", 5]]
+  Rendered events/show.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 47ms (Views: 41.1ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/babies/4/events/5/media/new" for ::1 at 2015-05-08 10:35:28 -0700
+Processing by MediaController#new as HTML
+  Parameters: {"baby_id"=>"4", "event_id"=>"5"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mBaby Load (0.3ms)[0m  [1mSELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mEvent Load (0.2ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", 5]]
+  Rendered media/new.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 62ms (Views: 58.6ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/babies/4/events/5/media" for ::1 at 2015-05-08 10:35:45 -0700
+Processing by MediaController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"NEljfpJzDo3LHML1hDlWYr4Klbj7ep4cn650fta7DY6uHrYmPhWLg6ta12uEW1bw0vHEnJRJfl8Q8L2BgnI8sg==", "medium"=>{"url"=>#<ActionDispatch::Http::UploadedFile:0x007fe16870b2e0 @tempfile=#<Tempfile:/var/folders/0s/dgv_f66n7hv5fb1fcsxph3000000gn/T/RackMultipart20150508-6238-14vaa7g.jpg>, @original_filename="CandH.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"medium[url]\"; filename=\"CandH.jpg\"\r\nContent-Type: image/jpeg\r\n">}, "commit"=>"Create Medium", "baby_id"=>"4", "event_id"=>"5"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mBaby Load (0.7ms)[0m  SELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mEvent Load (0.3ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "media" ("url", "event_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["url", "m8etbybifdzck3y8dtx9"], ["event_id", 5], ["created_at", "2015-05-08 17:35:46.982596"], ["updated_at", "2015-05-08 17:35:46.982596"]]
+  [1m[35m (89.8ms)[0m  COMMIT
+Redirected to http://localhost:3000/babies/4/events/5
+Completed 302 Found in 1381ms (ActiveRecord: 92.2ms)
+
+
+Started GET "/babies/4/events/5" for ::1 at 2015-05-08 10:35:47 -0700
+Processing by EventsController#show as HTML
+  Parameters: {"baby_id"=>"4", "id"=>"5"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mEvent Load (0.2ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", 5]]
+  [1m[36m (0.2ms)[0m  [1mSELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1[0m  [["user_id", 2]]
+  [1m[35mBaby Load (0.2ms)[0m  SELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", "5"]]
+  [1m[35mMedium Load (0.4ms)[0m  SELECT "media".* FROM "media" WHERE "media"."event_id" = $1  [["event_id", 5]]
+  Rendered events/show.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 94ms (Views: 88.7ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/babies" for ::1 at 2015-05-08 10:35:51 -0700
+Processing by BabiesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mBaby Load (0.6ms)[0m  SELECT "babies".* FROM "babies" WHERE "babies"."user_id" = $1  [["user_id", 2]]
+  Rendered babies/index.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 106ms (Views: 103.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/babies/3/events" for ::1 at 2015-05-08 10:35:54 -0700
+Processing by EventsController#index as HTML
+  Parameters: {"baby_id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.2ms)[0m  SELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1  [["user_id", 2]]
+  [1m[36mBaby Load (0.2ms)[0m  [1mSELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1  [["id", "3"]]
+  [1m[36mEvent Load (0.6ms)[0m  [1mSELECT "events".* FROM "events" WHERE "events"."baby_id" = $1[0m  [["baby_id", 3]]
+  Rendered events/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 110ms (Views: 105.9ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/babies/3/events/4" for ::1 at 2015-05-08 10:35:56 -0700
+Processing by EventsController#show as HTML
+  Parameters: {"baby_id"=>"3", "id"=>"4"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35m (0.3ms)[0m  SELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1  [["user_id", 2]]
+  [1m[36mBaby Load (0.2ms)[0m  [1mSELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", "4"]]
+  [1m[36mMedium Load (0.2ms)[0m  [1mSELECT "media".* FROM "media" WHERE "media"."event_id" = $1[0m  [["event_id", 4]]
+  Rendered events/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 36ms (Views: 31.5ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/babies/3/events/4/media/new" for ::1 at 2015-05-08 10:35:57 -0700
+Processing by MediaController#new as HTML
+  Parameters: {"baby_id"=>"3", "event_id"=>"4"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mBaby Load (0.3ms)[0m  [1mSELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mEvent Load (0.2ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", 4]]
+  Rendered media/new.html.erb within layouts/application (55.7ms)
+Completed 200 OK in 124ms (Views: 120.7ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/babies/3/events/4/media" for ::1 at 2015-05-08 10:36:09 -0700
+Processing by MediaController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"P5KqZa+vh2+8O0w1e4PSBUVMgHtzf69LcGhwLTJ782ClxX89A8kCYdx9Wat74dKXKbfRXxxMTwj/NrnSZrLCXA==", "medium"=>{"url"=>#<ActionDispatch::Http::UploadedFile:0x007fe16a6d1638 @tempfile=#<Tempfile:/var/folders/0s/dgv_f66n7hv5fb1fcsxph3000000gn/T/RackMultipart20150508-6238-1e9mjfc.jpg>, @original_filename="callback.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"medium[url]\"; filename=\"callback.jpg\"\r\nContent-Type: image/jpeg\r\n">}, "commit"=>"Create Medium", "baby_id"=>"3", "event_id"=>"4"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mBaby Load (0.5ms)[0m  SELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mEvent Load (0.4ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "media" ("url", "event_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["url", "ebs3yporx4akzmx4zxdg"], ["event_id", 4], ["created_at", "2015-05-08 17:36:10.066260"], ["updated_at", "2015-05-08 17:36:10.066260"]]
+  [1m[35m (41.4ms)[0m  COMMIT
+Redirected to http://localhost:3000/babies/3/events/4
+Completed 302 Found in 925ms (ActiveRecord: 43.4ms)
+
+
+Started GET "/babies/3/events/4" for ::1 at 2015-05-08 10:36:10 -0700
+Processing by EventsController#show as HTML
+  Parameters: {"baby_id"=>"3", "id"=>"4"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mEvent Load (0.2ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36m (0.2ms)[0m  [1mSELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1[0m  [["user_id", 2]]
+  [1m[35mBaby Load (0.3ms)[0m  SELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", "4"]]
+  [1m[35mMedium Load (0.3ms)[0m  SELECT "media".* FROM "media" WHERE "media"."event_id" = $1  [["event_id", 4]]
+  Rendered events/show.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 40ms (Views: 34.8ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/babies" for ::1 at 2015-05-08 11:06:46 -0700
+Processing by BabiesController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mBaby Load (0.5ms)[0m  SELECT "babies".* FROM "babies" WHERE "babies"."user_id" = $1  [["user_id", 2]]
+  Rendered babies/index.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 293ms (Views: 290.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/babies" for ::1 at 2015-05-08 11:07:24 -0700
+Processing by BabiesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mBaby Load (0.4ms)[0m  SELECT "babies".* FROM "babies" WHERE "babies"."user_id" = $1  [["user_id", 2]]
+  Rendered babies/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 91ms (Views: 88.3ms | ActiveRecord: 0.7ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (1.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('test@test.com') LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (102.6ms)[0m  INSERT INTO "babies" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Test"], ["created_at", "2015-05-08 18:29:39.281852"], ["updated_at", "2015-05-08 18:29:39.281852"]]
+  [1m[36m (380.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "babies" ("birthday", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["birthday", "2015-01-01 00:00:00.000000"], ["created_at", "2015-05-08 18:29:39.785914"], ["updated_at", "2015-05-08 18:29:39.785914"]]
+  [1m[35m (92.0ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "babies" ("gender", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["gender", "boy"], ["created_at", "2015-05-08 18:29:39.881775"], ["updated_at", "2015-05-08 18:29:39.881775"]]
+  [1m[36m (52.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (13.8ms)[0m  [1mINSERT INTO "babies" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["user_id", 1], ["created_at", "2015-05-08 18:29:39.938135"], ["updated_at", "2015-05-08 18:29:39.938135"]]
+PG::ForeignKeyViolation: ERROR:  insert or update on table "babies" violates foreign key constraint "fk_rails_88b562e5e9"
+DETAIL:  Key (user_id)=(1) is not present in table "users".
+: INSERT INTO "babies" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (1.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('test@test.com') LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.8ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('test@test.com') LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mUser Load (1.1ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (13.7ms)[0m  [1mINSERT INTO "babies" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Test"], ["created_at", "2015-05-08 18:32:09.849389"], ["updated_at", "2015-05-08 18:32:09.849389"]]
+  [1m[35m (41.2ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "babies" ("birthday", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["birthday", "2015-01-01 00:00:00.000000"], ["created_at", "2015-05-08 18:32:09.909480"], ["updated_at", "2015-05-08 18:32:09.909480"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "babies" ("gender", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["gender", "boy"], ["created_at", "2015-05-08 18:32:09.913779"], ["updated_at", "2015-05-08 18:32:09.913779"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "babies" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", "2015-05-08 18:32:09.953925"], ["updated_at", "2015-05-08 18:32:09.953925"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (1.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('test@test.com') LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.7ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('test@test.com') LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('test@test.com') LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (14.0ms)[0m  [1mINSERT INTO "babies" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Test"], ["created_at", "2015-05-08 18:36:21.042786"], ["updated_at", "2015-05-08 18:36:21.042786"]]
+  [1m[35m (30.1ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "babies" ("birthday", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["birthday", "2015-01-01 00:00:00.000000"], ["created_at", "2015-05-08 18:36:21.092147"], ["updated_at", "2015-05-08 18:36:21.092147"]]
+  [1m[36m (1.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "babies" ("gender", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["gender", "boy"], ["created_at", "2015-05-08 18:36:21.096761"], ["updated_at", "2015-05-08 18:36:21.096761"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "babies" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", "2015-05-08 18:36:21.100901"], ["updated_at", "2015-05-08 18:36:21.100901"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.7ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('test@test.com') LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('test@test.com') LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (13.4ms)[0m  INSERT INTO "babies" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Test"], ["created_at", "2015-05-08 18:38:34.267095"], ["updated_at", "2015-05-08 18:38:34.267095"]]
+  [1m[36m (18.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "babies" ("birthday", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["birthday", "2015-01-01 00:00:00.000000"], ["created_at", "2015-05-08 18:38:34.304971"], ["updated_at", "2015-05-08 18:38:34.304971"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "babies" ("gender", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["gender", "boy"], ["created_at", "2015-05-08 18:38:34.309640"], ["updated_at", "2015-05-08 18:38:34.309640"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "babies" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", "2015-05-08 18:38:34.314401"], ["updated_at", "2015-05-08 18:38:34.314401"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mUser Exists (1.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('test@test.test') LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "test"], ["email", "test@test.test"], ["password_digest", "$2a$10$HO/IDKQgMCIQ.b7WSxxx7urgR0LzDBpNfYFJhq9T1yytLx7YZCXFi"], ["created_at", "2015-05-08 18:42:16.224642"], ["updated_at", "2015-05-08 18:42:16.224642"]]
+  [1m[36m (14.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('test2@test2.test2') LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "babies" ("name", "birthday", "gender", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "Test"], ["birthday", "2015-01-01 00:00:00.000000"], ["gender", "boy"], ["created_at", "2015-05-08 18:42:16.497993"], ["updated_at", "2015-05-08 18:42:16.497993"]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "babies" ("name", "birthday", "gender", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Test1"], ["birthday", "2015-01-02 00:00:00.000000"], ["gender", "girl"], ["created_at", "2015-05-08 18:42:16.502385"], ["updated_at", "2015-05-08 18:42:16.502385"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (2.5ms)[0m  BEGIN
+  [1m[36mUser Exists (0.9ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('test@test.test') LIMIT 1[0m
+  [1m[35mSQL (34.7ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "test"], ["email", "test@test.test"], ["password_digest", "$2a$10$zv.B5s0AGuc9i0WR6pBBSOFVV9Ry5A0vjfeb9LV/Cev82.Cfa1p3K"], ["created_at", "2015-05-08 18:43:49.432054"], ["updated_at", "2015-05-08 18:43:49.432054"]]
+  [1m[36m (35.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('test2@test2.test2') LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (12.7ms)[0m  INSERT INTO "babies" ("name", "birthday", "gender", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Test"], ["birthday", "2015-01-01 00:00:00.000000"], ["gender", "boy"], ["user_id", 5], ["created_at", "2015-05-08 18:43:49.961095"], ["updated_at", "2015-05-08 18:43:49.961095"]]
+  [1m[36m (2.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (1.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('test2@test2.test2') LIMIT 1[0m
+  [1m[35mSQL (1.9ms)[0m  INSERT INTO "babies" ("name", "birthday", "gender", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "Test1"], ["birthday", "2015-01-02 00:00:00.000000"], ["gender", "girl"], ["created_at", "2015-05-08 18:43:49.990463"], ["updated_at", "2015-05-08 18:43:49.990463"]]
+  [1m[36m (10.0ms)[0m  [1mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (1.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('test@test.test') LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "test"], ["email", "test@test.test"], ["password_digest", "$2a$10$UMb1W/xPEFeM7KrVzS.l7.PkOyaGH/tlgT/a9ViNIymgjrROlJ.Ya"], ["created_at", "2015-05-08 18:45:16.486959"], ["updated_at", "2015-05-08 18:45:16.486959"]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('test2@test.com') LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "test2"], ["email", "test2@test.com"], ["password_digest", "$2a$10$Zw2HJe//kJIwyt1.hTlWZOafFhIsm7Hz6LEp4on.g58cLVtJC.9bG"], ["created_at", "2015-05-08 18:45:16.587735"], ["updated_at", "2015-05-08 18:45:16.587735"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.9ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('test@test.test') LIMIT 1[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "test"], ["email", "test@test.test"], ["password_digest", "$2a$10$V72bdRXQ0XaRCkb.aTxtqOzF97OYgTPNlB9cxI38PjaVcYPGmV3jW"], ["created_at", "2015-05-08 18:45:39.213188"], ["updated_at", "2015-05-08 18:45:39.213188"]]
+  [1m[36m (2.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('test2@test.com') LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "test2"], ["email", "test2@test.com"], ["password_digest", "$2a$10$WLRZvyoDmVu4m40XRLGV2Olc4T2l3sIgutbK.rC.nt6rD135dhLOW"], ["created_at", "2015-05-08 18:45:39.311782"], ["updated_at", "2015-05-08 18:45:39.311782"]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "babies" ("name", "birthday", "gender", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Test"], ["birthday", "2015-01-01 00:00:00.000000"], ["gender", "boy"], ["user_id", 8], ["created_at", "2015-05-08 18:45:39.368622"], ["updated_at", "2015-05-08 18:45:39.368622"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "babies" ("name", "birthday", "gender", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Test1"], ["birthday", "2015-01-02 00:00:00.000000"], ["gender", "girl"], ["user_id", 9], ["created_at", "2015-05-08 18:45:39.373023"], ["updated_at", "2015-05-08 18:45:39.373023"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (1.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('test@test.test') LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "test"], ["email", "test@test.test"], ["password_digest", "$2a$10$t6svtBPkdgIMoqaPFkKVpeMYZTZyNMj9PRlqMqZIqKvhm.0zOhRbe"], ["created_at", "2015-05-08 18:51:03.110678"], ["updated_at", "2015-05-08 18:51:03.110678"]]
+  [1m[36m (1.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('test2@test.com') LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "test2"], ["email", "test2@test.com"], ["password_digest", "$2a$10$C2CmWOE5wyr2/u0afO3aX.q7MWaYM7bSFqZAU28lmRcgF.4Q9/ubu"], ["created_at", "2015-05-08 18:51:03.207236"], ["updated_at", "2015-05-08 18:51:03.207236"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "babies" ("name", "birthday", "gender", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Test"], ["birthday", "2015-01-01 00:00:00.000000"], ["gender", "boy"], ["user_id", 10], ["created_at", "2015-05-08 18:51:03.249362"], ["updated_at", "2015-05-08 18:51:03.249362"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "babies" ("name", "birthday", "gender", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Test1"], ["birthday", "2015-01-02 00:00:00.000000"], ["gender", "girl"], ["user_id", 11], ["created_at", "2015-05-08 18:51:03.253633"], ["updated_at", "2015-05-08 18:51:03.253633"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (16.3ms)[0m  [1mINSERT INTO "events" ("date", "topic", "body", "baby_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["date", "2015-05-08 00:00:00.000000"], ["topic", "Test Topic"], ["body", "Test Topic Body"], ["baby_id", 27], ["created_at", "2015-05-08 18:51:03.267532"], ["updated_at", "2015-05-08 18:51:03.267532"]]
+  [1m[35m (1.1ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "events" ("date", "topic", "body", "baby_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["date", "2015-05-08 00:00:00.000000"], ["topic", "Test Topic2"], ["body", "Test Topic Body2"], ["baby_id", 28], ["created_at", "2015-05-08 18:51:03.288782"], ["updated_at", "2015-05-08 18:51:03.288782"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (2.2ms)[0m  [1mINSERT INTO "stats" ("height", "weight", "date", "baby_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", 18.0], ["weight", 10.0], ["date", "2015-05-08 00:00:00.000000"], ["baby_id", 27], ["created_at", "2015-05-08 18:51:03.320535"], ["updated_at", "2015-05-08 18:51:03.320535"]]
+  [1m[35m (27.8ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "stats" ("height", "weight", "date", "baby_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["height", 20.0], ["weight", 9.0], ["date", "2015-05-05 00:00:00.000000"], ["baby_id", 28], ["created_at", "2015-05-08 18:51:03.355327"], ["updated_at", "2015-05-08 18:51:03.355327"]]
+  [1m[36m (3.9ms)[0m  [1mCOMMIT[0m
+
+
+Started GET "/logout" for ::1 at 2015-05-08 11:51:32 -0700
+Processing by SessionsController#destroy as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+Redirected to http://localhost:3000/login
+Completed 302 Found in 17ms (ActiveRecord: 0.7ms)
+
+
+Started GET "/login" for ::1 at 2015-05-08 11:51:32 -0700
+Processing by SessionsController#new as HTML
+  [1m[35mUser Load (0.8ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+  Rendered layouts/_flash.html.erb (1.0ms)
+  Rendered sessions/new.html.erb within layouts/application (24.1ms)
+Completed 200 OK in 219ms (Views: 208.4ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/login" for ::1 at 2015-05-08 11:51:39 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"k0s7ZzZnyDdKmBNMymzvdgATROPsOeJzRt9N89lfuD0JHO4/mgFNOSreBtLKDu/kbOgVx4MKAjDJgYQMjZaJAQ==", "user"=>{"email"=>"test@test.com", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "test@test.com"]]
+  Rendered layouts/_flash.html.erb (0.2ms)
+  Rendered sessions/new.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 61ms (Views: 53.6ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/login" for ::1 at 2015-05-08 11:51:49 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"R+1h6/azI50309YpM6KhOy7MQHQ92JyuLu+N+b+AS1HdurSzWtWmk1eVw7czwKGpQjcRUFLrfO2hsUQG60l6bQ==", "user"=>{"email"=>"test@test.com", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "test@test.com"]]
+  Rendered layouts/_flash.html.erb (0.1ms)
+  Rendered sessions/new.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 44ms (Views: 41.4ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/login" for ::1 at 2015-05-08 11:51:59 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"L+jZtoCb9csGg+a5xid+02k7BGHbebncFc1FrICB9KW1vwzuLP1wxWbF8yfGRX5BBcBVRbRKWZ+ak4xT1EjFmQ==", "user"=>{"email"=>"test@test.test", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "test@test.test"]]
+Redirected to http://localhost:3000/babies
+Completed 302 Found in 106ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/babies" for ::1 at 2015-05-08 11:51:59 -0700
+Processing by BabiesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 10]]
+  [1m[35mBaby Load (0.7ms)[0m  SELECT "babies".* FROM "babies" WHERE "babies"."user_id" = $1  [["user_id", 10]]
+  Rendered babies/index.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 190ms (Views: 184.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/babies/27" for ::1 at 2015-05-08 11:52:02 -0700
+Processing by BabiesController#show as HTML
+  Parameters: {"id"=>"27"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 10]]
+  [1m[35m (0.3ms)[0m  SELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1  [["user_id", 10]]
+  [1m[36mBaby Load (0.3ms)[0m  [1mSELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1[0m  [["id", 27]]
+  Rendered babies/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 103ms (Views: 97.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/babies/27/stats" for ::1 at 2015-05-08 11:52:04 -0700
+Processing by StatsController#index as HTML
+  Parameters: {"baby_id"=>"27"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 10]]
+  [1m[36m (0.4ms)[0m  [1mSELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1[0m  [["user_id", 10]]
+  [1m[35mBaby Load (0.2ms)[0m  SELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1  [["id", 27]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1[0m  [["id", "27"]]
+  [1m[35mStat Load (1.3ms)[0m  SELECT "stats".* FROM "stats" WHERE "stats"."baby_id" = $1  [["baby_id", 27]]
+  Rendered stats/index.html.erb within layouts/application (19.3ms)
+Completed 200 OK in 135ms (Views: 67.0ms | ActiveRecord: 6.6ms)
+
+
+Started GET "/babies/27" for ::1 at 2015-05-08 11:52:08 -0700
+Processing by BabiesController#show as HTML
+  Parameters: {"id"=>"27"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 10]]
+  [1m[35m (0.3ms)[0m  SELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1  [["user_id", 10]]
+  [1m[36mBaby Load (0.2ms)[0m  [1mSELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1[0m  [["id", 27]]
+  Rendered babies/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 48ms (Views: 44.0ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/babies/27/events" for ::1 at 2015-05-08 11:52:09 -0700
+Processing by EventsController#index as HTML
+  Parameters: {"baby_id"=>"27"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 10]]
+  [1m[36m (0.2ms)[0m  [1mSELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1[0m  [["user_id", 10]]
+  [1m[35mBaby Load (0.3ms)[0m  SELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1  [["id", 27]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1[0m  [["id", "27"]]
+  [1m[35mEvent Load (0.9ms)[0m  SELECT "events".* FROM "events" WHERE "events"."baby_id" = $1  [["baby_id", 27]]
+  Rendered events/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 103ms (Views: 97.4ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/babies/27" for ::1 at 2015-05-08 11:52:11 -0700
+Processing by BabiesController#show as HTML
+  Parameters: {"id"=>"27"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 10]]
+  [1m[35m (0.3ms)[0m  SELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1  [["user_id", 10]]
+  [1m[36mBaby Load (0.2ms)[0m  [1mSELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1[0m  [["id", 27]]
+  Rendered babies/show.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 38ms (Views: 34.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/babies/27/events" for ::1 at 2015-05-08 11:52:14 -0700
+Processing by EventsController#index as HTML
+  Parameters: {"baby_id"=>"27"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 10]]
+  [1m[36m (0.2ms)[0m  [1mSELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1[0m  [["user_id", 10]]
+  [1m[35mBaby Load (0.2ms)[0m  SELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1  [["id", 27]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1[0m  [["id", "27"]]
+  [1m[35mEvent Load (0.4ms)[0m  SELECT "events".* FROM "events" WHERE "events"."baby_id" = $1  [["baby_id", 27]]
+  Rendered events/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 37ms (Views: 33.3ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/babies/27/events/6" for ::1 at 2015-05-08 11:52:15 -0700
+Processing by EventsController#show as HTML
+  Parameters: {"baby_id"=>"27", "id"=>"6"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 10]]
+  [1m[35mEvent Load (0.3ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36m (0.2ms)[0m  [1mSELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1[0m  [["user_id", 10]]
+  [1m[35mBaby Load (0.3ms)[0m  SELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1  [["id", 27]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", "6"]]
+  [1m[35mMedium Load (0.3ms)[0m  SELECT "media".* FROM "media" WHERE "media"."event_id" = $1  [["event_id", 6]]
+  Rendered events/show.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 46ms (Views: 40.3ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/logout" for ::1 at 2015-05-08 11:52:25 -0700
+Processing by SessionsController#destroy as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 10]]
+Redirected to http://localhost:3000/login
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/login" for ::1 at 2015-05-08 11:52:25 -0700
+Processing by SessionsController#new as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+  Rendered layouts/_flash.html.erb (0.2ms)
+  Rendered sessions/new.html.erb within layouts/application (12.4ms)
+Completed 200 OK in 110ms (Views: 108.3ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/login" for ::1 at 2015-05-08 11:52:38 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"gN6KXVa9blAEMn1Hd2YruIAwwpU5UDnZ9oyWBW/EvZQaiV8F+tvrXmR0aNl3BCsq7MuTsVZj2Zp50l/6Ow2MqA==", "user"=>{"email"=>"test2@test.com", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "test2@test.com"]]
+Redirected to http://localhost:3000/babies
+Completed 302 Found in 104ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/babies" for ::1 at 2015-05-08 11:52:38 -0700
+Processing by BabiesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  [1m[35mBaby Load (0.4ms)[0m  SELECT "babies".* FROM "babies" WHERE "babies"."user_id" = $1  [["user_id", 11]]
+  Rendered babies/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 64ms (Views: 62.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/babies/28" for ::1 at 2015-05-08 11:52:40 -0700
+Processing by BabiesController#show as HTML
+  Parameters: {"id"=>"28"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  [1m[35m (0.3ms)[0m  SELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1  [["user_id", 11]]
+  [1m[36mBaby Load (0.2ms)[0m  [1mSELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1[0m  [["id", 28]]
+  Rendered babies/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 72ms (Views: 68.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/babies/28/stats" for ::1 at 2015-05-08 11:52:49 -0700
+Processing by StatsController#index as HTML
+  Parameters: {"baby_id"=>"28"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 11]]
+  [1m[36m (0.3ms)[0m  [1mSELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1[0m  [["user_id", 11]]
+  [1m[35mBaby Load (0.6ms)[0m  SELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1  [["id", 28]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1[0m  [["id", "28"]]
+  [1m[35mStat Load (0.6ms)[0m  SELECT "stats".* FROM "stats" WHERE "stats"."baby_id" = $1  [["baby_id", 28]]
+  Rendered stats/index.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 101ms (Views: 55.2ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/babies/28/events" for ::1 at 2015-05-08 11:52:51 -0700
+Processing by EventsController#index as HTML
+  Parameters: {"baby_id"=>"28"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  [1m[35m (0.3ms)[0m  SELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1  [["user_id", 11]]
+  [1m[36mBaby Load (0.2ms)[0m  [1mSELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1[0m  [["id", 28]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1  [["id", "28"]]
+  [1m[36mEvent Load (0.3ms)[0m  [1mSELECT "events".* FROM "events" WHERE "events"."baby_id" = $1[0m  [["baby_id", 28]]
+  Rendered events/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 52ms (Views: 47.1ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/babies/28/events/7" for ::1 at 2015-05-08 11:52:53 -0700
+Processing by EventsController#show as HTML
+  Parameters: {"baby_id"=>"28", "id"=>"7"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 11]]
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 7]]
+  [1m[35m (0.2ms)[0m  SELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1  [["user_id", 11]]
+  [1m[36mBaby Load (0.2ms)[0m  [1mSELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1[0m  [["id", 28]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", "7"]]
+  [1m[36mMedium Load (0.4ms)[0m  [1mSELECT "media".* FROM "media" WHERE "media"."event_id" = $1[0m  [["event_id", 7]]
+  Rendered events/show.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 116ms (Views: 111.0ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/babies/28/events" for ::1 at 2015-05-08 11:53:53 -0700
+Processing by EventsController#index as HTML
+  Parameters: {"baby_id"=>"28"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 11]]
+  [1m[36m (0.3ms)[0m  [1mSELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1[0m  [["user_id", 11]]
+  [1m[35mBaby Load (0.2ms)[0m  SELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1  [["id", 28]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1[0m  [["id", "28"]]
+  [1m[35mEvent Load (0.3ms)[0m  SELECT "events".* FROM "events" WHERE "events"."baby_id" = $1  [["baby_id", 28]]
+  Rendered events/index.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 45ms (Views: 40.7ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/babies/28/events/7" for ::1 at 2015-05-08 11:53:54 -0700
+Processing by EventsController#show as HTML
+  Parameters: {"baby_id"=>"28", "id"=>"7"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  [1m[35mEvent Load (0.3ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", 7]]
+  [1m[36m (0.2ms)[0m  [1mSELECT "babies"."id" FROM "babies" WHERE "babies"."user_id" = $1[0m  [["user_id", 11]]
+  [1m[35mBaby Load (0.2ms)[0m  SELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1  [["id", 28]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", "7"]]
+  [1m[35mMedium Load (0.2ms)[0m  SELECT "media".* FROM "media" WHERE "media"."event_id" = $1  [["event_id", 7]]
+  Rendered events/show.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 42ms (Views: 38.0ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/babies/28/events/7/media/new" for ::1 at 2015-05-08 11:53:54 -0700
+Processing by MediaController#new as HTML
+  Parameters: {"baby_id"=>"28", "event_id"=>"7"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  [1m[35mBaby Load (0.3ms)[0m  SELECT  "babies".* FROM "babies" WHERE "babies"."id" = $1 LIMIT 1  [["id", 28]]
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 7]]
+  Rendered media/new.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 89ms (Views: 85.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/babies" for ::1 at 2015-05-08 11:53:59 -0700
+Processing by BabiesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 11]]
+  [1m[36mBaby Load (0.3ms)[0m  [1mSELECT "babies".* FROM "babies" WHERE "babies"."user_id" = $1[0m  [["user_id", 11]]
+  Rendered babies/index.html.erb within layouts/application (6.3ms)
+Completed 200 OK in 63ms (Views: 60.0ms | ActiveRecord: 0.5ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (1.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('test@test.test') LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "test"], ["email", "test@test.test"], ["password_digest", "$2a$10$CNTQoShl5Z4tRqR57NHfUuRSPtUBb.Asfifx5q1GozzVVgu1dSXwi"], ["created_at", "2015-05-08 18:55:27.978025"], ["updated_at", "2015-05-08 18:55:27.978025"]]
+  [1m[36m (19.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('test2@test.com') LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "test2"], ["email", "test2@test.com"], ["password_digest", "$2a$10$fbh/mizS4SonfB5FXgl4VOXBoVew8pkANZdA8rP.ZgEuaKgSidHX."], ["created_at", "2015-05-08 18:55:28.100572"], ["updated_at", "2015-05-08 18:55:28.100572"]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "babies" ("name", "birthday", "gender", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Test"], ["birthday", "2015-01-01 00:00:00.000000"], ["gender", "boy"], ["user_id", 12], ["created_at", "2015-05-08 18:55:28.137299"], ["updated_at", "2015-05-08 18:55:28.137299"]]
+  [1m[35m (1.2ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "babies" ("name", "birthday", "gender", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Test2"], ["birthday", "2015-01-02 00:00:00.000000"], ["gender", "girl"], ["user_id", 13], ["created_at", "2015-05-08 18:55:28.143172"], ["updated_at", "2015-05-08 18:55:28.143172"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "events" ("date", "topic", "body", "baby_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["date", "2015-05-08 00:00:00.000000"], ["topic", "Test Topic"], ["body", "Test Topic Body"], ["baby_id", 29], ["created_at", "2015-05-08 18:55:28.160800"], ["updated_at", "2015-05-08 18:55:28.160800"]]
+  [1m[35m (1.1ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "events" ("date", "topic", "body", "baby_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["date", "2015-05-08 00:00:00.000000"], ["topic", "Test Topic2"], ["body", "Test Topic Body2"], ["baby_id", 30], ["created_at", "2015-05-08 18:55:28.166116"], ["updated_at", "2015-05-08 18:55:28.166116"]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "stats" ("height", "weight", "date", "baby_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", 18.0], ["weight", 10.0], ["date", "2015-05-08 00:00:00.000000"], ["baby_id", 29], ["created_at", "2015-05-08 18:55:28.198638"], ["updated_at", "2015-05-08 18:55:28.198638"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "stats" ("height", "weight", "date", "baby_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["height", 20.0], ["weight", 9.0], ["date", "2015-05-05 00:00:00.000000"], ["baby_id", 30], ["created_at", "2015-05-08 18:55:28.202837"], ["updated_at", "2015-05-08 18:55:28.202837"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+
+
+Started GET "/logout" for ::1 at 2015-05-08 11:55:59 -0700
+Processing by SessionsController#destroy as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 11]]
+Redirected to http://localhost:3000/login
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/login" for ::1 at 2015-05-08 11:55:59 -0700
+Processing by SessionsController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+  Rendered layouts/_flash.html.erb (0.2ms)
+  Rendered sessions/new.html.erb within layouts/application (36.8ms)
+Completed 200 OK in 185ms (Views: 182.5ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/login" for ::1 at 2015-05-08 11:56:05 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ZRdyU7J41xXZmlYklkKOgX9Jwh7MucyS5QQUSVsQetn/QKcLHh5SG7ncQ7qWII4TE7KTOqOKLNFqWt22D9lL5Q==", "user"=>{"email"=>"test@test.test", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "test@test.test"]]
+Redirected to http://localhost:3000/babies
+Completed 302 Found in 102ms (ActiveRecord: 0.7ms)
+
+
+Started GET "/babies" for ::1 at 2015-05-08 11:56:05 -0700
+Processing by BabiesController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 12]]
+  [1m[36mBaby Load (1.4ms)[0m  [1mSELECT "babies".* FROM "babies" WHERE "babies"."user_id" = $1[0m  [["user_id", 12]]
+  Rendered babies/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 62ms (Views: 58.2ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/logout" for ::1 at 2015-05-08 11:58:14 -0700
+Processing by SessionsController#destroy as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 12]]
+Redirected to http://localhost:3000/login
+Completed 302 Found in 3ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/login" for ::1 at 2015-05-08 11:58:14 -0700
+Processing by SessionsController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+  Rendered layouts/_flash.html.erb (0.2ms)
+  Rendered sessions/new.html.erb within layouts/application (38.2ms)
+Completed 200 OK in 310ms (Views: 308.5ms | ActiveRecord: 0.4ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (1.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('test@test.test') LIMIT 1[0m
+  [1m[35mSQL (10.5ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "test"], ["email", "test@test.test"], ["password_digest", "$2a$10$tXkOB69NIF9SDSg3gMObu..lbVEN0Sb4JI65AH8s9O7KR.lByAF7u"], ["created_at", "2015-05-08 18:58:31.839815"], ["updated_at", "2015-05-08 18:58:31.839815"]]
+  [1m[36m (1.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('test2@test.com') LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "test2"], ["email", "test2@test.com"], ["password_digest", "$2a$10$ily7YoD3Z7NsIAY/.MSWmOohLthYA8sg.XAkMbXgSaMZHDXeDt9jO"], ["created_at", "2015-05-08 18:58:31.951808"], ["updated_at", "2015-05-08 18:58:31.951808"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (1.2ms)[0m  [1mINSERT INTO "babies" ("name", "birthday", "gender", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Test"], ["birthday", "2015-01-01 00:00:00.000000"], ["gender", "boy"], ["user_id", 14], ["created_at", "2015-05-08 18:58:31.986874"], ["updated_at", "2015-05-08 18:58:31.986874"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "babies" ("name", "birthday", "gender", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Test3"], ["birthday", "2015-01-02 00:00:00.000000"], ["gender", "boy"], ["user_id", 14], ["created_at", "2015-05-08 18:58:31.992014"], ["updated_at", "2015-05-08 18:58:31.992014"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "babies" ("name", "birthday", "gender", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Tes4"], ["birthday", "2015-01-03 00:00:00.000000"], ["gender", "girl"], ["user_id", 14], ["created_at", "2015-05-08 18:58:31.995735"], ["updated_at", "2015-05-08 18:58:31.995735"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "babies" ("name", "birthday", "gender", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Test2"], ["birthday", "2015-01-02 00:00:00.000000"], ["gender", "girl"], ["user_id", 15], ["created_at", "2015-05-08 18:58:31.999340"], ["updated_at", "2015-05-08 18:58:31.999340"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (10.6ms)[0m  [1mINSERT INTO "events" ("date", "topic", "body", "baby_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["date", "2015-05-08 00:00:00.000000"], ["topic", "Test Topic"], ["body", "Test Topic Body"], ["baby_id", 31], ["created_at", "2015-05-08 18:58:32.014486"], ["updated_at", "2015-05-08 18:58:32.014486"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "events" ("date", "topic", "body", "baby_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["date", "2015-05-08 00:00:00.000000"], ["topic", "Test Topic2"], ["body", "Test Topic Body2"], ["baby_id", 34], ["created_at", "2015-05-08 18:58:32.030700"], ["updated_at", "2015-05-08 18:58:32.030700"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "stats" ("height", "weight", "date", "baby_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", 18.0], ["weight", 10.0], ["date", "2015-05-08 00:00:00.000000"], ["baby_id", 31], ["created_at", "2015-05-08 18:58:32.056718"], ["updated_at", "2015-05-08 18:58:32.056718"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "stats" ("height", "weight", "date", "baby_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["height", 20.0], ["weight", 9.0], ["date", "2015-05-05 00:00:00.000000"], ["baby_id", 34], ["created_at", "2015-05-08 18:58:32.060882"], ["updated_at", "2015-05-08 18:58:32.060882"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+
+
+Started POST "/login" for ::1 at 2015-05-08 11:58:38 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"DwtjiUjgSQScsJukKQMRrDiLAPI9yX+0UrtHwmcD2ZOVXLbR5IbMCvz2jjopYRE+VHBR1lL6n/fd5Y49M8rorw==", "user"=>{"email"=>"test@test.test", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "test@test.test"]]
+Redirected to http://localhost:3000/babies
+Completed 302 Found in 106ms (ActiveRecord: 0.9ms)
+
+
+Started GET "/babies" for ::1 at 2015-05-08 11:58:38 -0700
+Processing by BabiesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 14]]
+  [1m[36mBaby Load (0.6ms)[0m  [1mSELECT "babies".* FROM "babies" WHERE "babies"."user_id" = $1[0m  [["user_id", 14]]
+  Rendered babies/index.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 130ms (Views: 127.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/babies/new" for ::1 at 2015-05-08 11:58:48 -0700
+Processing by BabiesController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 14]]
+  Rendered babies/new.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 51ms (Views: 49.5ms | ActiveRecord: 0.3ms)
