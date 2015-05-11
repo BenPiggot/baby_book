@@ -44,6 +44,7 @@ class MediaController < ApplicationController
 
         # add image to media model
         @event.media.find_or_create_by(url: cloudinary_file.public_id)
+
       end
     end
     redirect_to baby_event_path(@baby,@event)

@@ -12,6 +12,9 @@
 <%= content_tag :div, class: "temp_information", data: {temp: @events} do %>
 <% end %>
 
+<%= content_tag :div, class: "photo_information", data: {temp: @media_event} do %>
+<% end %>
+
 <div id="visualization"></div>
 
 <div class="btn-margins-large">
@@ -27,7 +30,8 @@
     <div id="off">Close</div>
     <p class="blurb">
     </p>
-    <img class="timeline-img">
+    <!-- <img class="timeline-img"> -->
+
     <div class="modal-button"><a id="photo-add" class="btn btn-info" href="" >Add a Photo</a></div>
 </div>
 

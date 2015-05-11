@@ -1,8 +1,19 @@
+var photo
+
 document.addEventListener("DOMContentLoaded", function(event) {
+
 
   var container = document.getElementById('visualization');
 
   var babyInfo = $('.temp_information').data('temp')
+
+  var photoInfo = $('.photo_information').data('temp')
+
+  for (var i = 0; i < photoInfo.length; i++) {
+    for (var j = 0; j < photoInfo[i].length; j++ ) {
+        console.log(photoInfo[i][j].event_id)
+    }
+  }
 
   var baby = []
   for (var i = 0; i < babyInfo.length; i++) {
@@ -52,7 +63,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
           if (babyInfo[i].topic === text) {
             $('#hidden-header').text(babyInfo[i].topic)
             $('.blurb').text(babyInfo[i].body)
-            $('.timeline-img').attr('src', 'http://i.telegraph.co.uk/multimedia/archive/01778/baby_1778233b.jpg')
+            for (var j = 0; j < photoInfo.length; j++) {
+                for (var k = 0; k < photoInfo[j].length; k++ ) {
+                    if (photoInfo[j][k].event_id === babyInfo[i].id) {
+                      photo = photoInfo[j][k].url
+                    }
+                  }
+                }
+            // $('.timeline-img').attr('src', 'http://i.telegraph.co.uk/multimedia/archive/01778/baby_1778233b.jpg')
             $('#photo-add').attr('href',"events/" + babyInfo[i].id + "/media/new")
             }
           }
