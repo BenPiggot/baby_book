@@ -1,5 +1,8 @@
 var photo
 
+$.cloudinary.config({ cloud_name: 'hfi2i1sfv', api_key: '178156591665211'})
+
+
 document.addEventListener("DOMContentLoaded", function(event) {
 
 
@@ -67,6 +70,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 for (var k = 0; k < photoInfo[j].length; k++ ) {
                     if (photoInfo[j][k].event_id === babyInfo[i].id) {
                       photo = photoInfo[j][k].url
+                      console.log(photo)
+                      $.cloudinary.image(photo)
+                      // $(".timeline-img").html("<%= render(cl_image_tag(" + photo + ") )%>")
                     }
                   }
                 }
