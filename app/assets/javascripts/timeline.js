@@ -68,70 +68,73 @@ document.addEventListener("DOMContentLoaded", function(event) {
     options
     );
 
-  console.log(timeline)
 
 
+// Zoom out functions, triggers on user input
+  var zoomOut = function() {
+    $('#zoom-out').on('click', function() {
+    console.log("working")
+    if (zoomLevelBig < 68373396000) {
+      zoomLevelBig = zoomLevelBig + (zoomLevelSmall * 2)
+        timeline.setOptions(options = {
+          min: birth,
+          max: end,
+          start: start,
+          end: present,
+          zoomMax: zoomLevelBig
+        })
+      }
+    })
+  }
 
-var zoomOut = function() {
-  $('#zoom-out').on('click', function() {
-  console.log("working")
-  if (zoomLevelBig < 68373396000) {
-    zoomLevelBig = zoomLevelBig + (zoomLevelSmall * 2)
-      timeline.setOptions(options = {
-        min: birth,
-        max: end,
-        start: start,
-        end: present,
-        zoomMax: zoomLevelBig
-      })
-    }
+  zoomOut()
+
+
+// Zoom in functions, triggers on user input
+  var zoomIn = function() {
+    $('#zoom-in').on('click', function() {
+    console.log("working")
+    if (zoomLevelBig > 2629746000 * 4) {
+      zoomLevelBig = zoomLevelBig - (2629746000 * 2)
+      console.log(zoomLevelBig)
+        timeline.setOptions(options = {
+          min: birth,
+          max: end,
+          start: start,
+          end: present,
+          zoomMax: zoomLevelBig
+        })
+      }
+    })
+  }
+
+  zoomIn()
+
+
+// Function that allows user to turn on timeline scrolling
+  $('#scroll-on').on('click', function(){
+     timeline.setOptions(options = {
+      moveable: true
+     });
+     zoomIn()
+     zoomOut()
+     $('#scroll-on').hide()
+     $('#scroll-off').show()
   })
-}
 
-zoomOut()
-
-var zoomIn = function() {
-  $('#zoom-in').on('click', function() {
-  console.log("working")
-  if (zoomLevelBig > 2629746000 * 4) {
-    zoomLevelBig = zoomLevelBig - (2629746000 * 2)
-    console.log(zoomLevelBig)
-      timeline.setOptions(options = {
-        min: birth,
-        max: end,
-        start: start,
-        end: present,
-        zoomMax: zoomLevelBig
-      })
-    }
+// Function that allows user to turn off timeline scrolling
+  $('#scroll-off').on('click', function() {
+    timeline.setOptions(options = {
+      moveable: false
+     });
+     zoomIn()
+     zoomOut()
+     $('#scroll-off').hide()
+     $('#scroll-on').show()
   })
-}
-
-zoomIn()
-
-$('#scroll-on').on('click', function(){
-   timeline.setOptions(options = {
-    moveable: true
-   });
-   zoomIn()
-   zoomOut()
-   $('#scroll-on').hide()
-   $('#scroll-off').show()
-
-})
-
-
-$('#scroll-off').on('click', function() {
-  timeline.setOptions(options = {
-    moveable: false
-   });
-   zoomIn()
-   zoomOut()
-   $('#scroll-off').hide()
-   $('#scroll-on').show()
-})
-
-
 
 
 });
+
+
+
