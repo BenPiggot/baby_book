@@ -71,9 +71,13 @@ li {
 }
 
 .baby-list {
-  margin-top: 0px;
+  margin-top: 10px;
   list-style: none;
   margin-left: -40px;
+}
+
+ul > h4.baby-name {
+  margin-bottom: 5px;
 }
 
 .time-button {
@@ -81,13 +85,11 @@ li {
 }
 
 .baby-maker {
+  margin-top: 15px;
   text-align: center;
 }
 
-.float-right {
-  float: right;
-  margin-right: 10%;
-}
+
 
 .baby-form {
   padding-left: 15%;
@@ -189,7 +191,7 @@ li {
   margin-bottom: 20px
 }
 
-#off {
+.off {
   line-height: 36px;
   position: absolute;
   top: 3px;
@@ -200,6 +202,7 @@ li {
   height: 32px;
   width: 60px;
   color: #000;
+  z-index: 1000;
 }
 
 
@@ -212,4 +215,93 @@ li {
   text-align: center;
   margin: 10px;
 }
+
+
+.imgWrapper {
+  display: inline-block;
+  position: relative;
+  height: 90px;
+  width: 100px;
+}
+
+.imgDescription {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255,65,54, 0.32);
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+}
+
+
+.imgWrapper:hover .imgDescription {
+  visibility: visible;
+  opacity: 1;
+}
+
+.social-share-button {
+  float: right;
+  display: inline;
+  margin-top: 0px;
+  width: 100px;
+}
+
+.float-right {
+  float: right;
+  margin-right: 10%;
+}
+
+.social-container {
+  margin-top: 20px;
+}
+
+.social-container .links {
+  margin-bottom: 40px;
+
+  }
+
+.social-container .links a {
+  margin: 0 20px;
+  color: #ccc;
+  text-decoration: none;
+  font-size: 34px;
+  font-weight: bold;
+  text-shadow: 0px 2px 3px #fff;
+  }
+
+body > div > div.btn-margins-large > div.social-container > div > div > a.prettySocial.fa.fa-twitter:hover {
+  color: #75caeb;
+  }
+
+body > div > div.btn-margins-large > div.social-container > div > div > a.prettySocial.fa.fa-facebook:hover {
+  color: #44609D;
+  }
+
+body > div > div.btn-margins-large > div.social-container > div > div > a.prettySocial.fa.fa-google-plus:hover {
+  color: #DD4B39;
+  }
+
+body > div > div.btn-margins-large > div.social-container > div > div > a.prettySocial.fa.fa-pinterest:hover {
+  color: #BD081C;
+  }
+
+
+  .source {
+  width: 350px;
+  margin: 0 auto;
+  background: #eee;
+  color: #666;
+  font-weight: bold;
+  display: block;
+  white-space: pre;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+      border-radius: 3px;
+  -webkit-box-shadow: inset #ccc 0px 0px 6px 0px;
+     -moz-box-shadow: inset #ccc 0px 0px 6px 0px;
+      box-shadow: inset #ccc 0px 0px 6px 0px;
+  }
 

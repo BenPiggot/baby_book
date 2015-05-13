@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 // Create baby events JSON for timeline
   var baby = []
   for (var i = 0; i < babyInfo.length; i++) {
+    console.log(babyInfo[i])
     baby[i] = {}
     var showId = babyInfo[i].id
     baby[i].id = i
@@ -93,7 +94,10 @@ zoomOut()
 var zoomIn = function() {
   $('#zoom-in').on('click', function() {
   console.log("working")
-  if (zoomLevelBig > 2629746000 * 4) {
+  if (zoomLevelBig === 94670780166) {
+    console.log("still working")
+    zoomLevelBig = 63113828166
+ } else if ((2629746000 * 2) < zoomLevelBig <= 63113828166) {
     zoomLevelBig = zoomLevelBig - (2629746000 * 2)
     console.log(zoomLevelBig)
       timeline.setOptions(options = {
