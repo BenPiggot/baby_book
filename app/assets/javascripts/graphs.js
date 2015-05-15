@@ -195,8 +195,6 @@ $(function(){
   // console.log(weightMonth)
 
 
-
-
   var maleWeight = function(){
     var ctx = document.getElementById("canvas").getContext("2d");
     window.myLine = new Chart(ctx).Line(MaleWeight, {
