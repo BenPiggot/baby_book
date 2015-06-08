@@ -1,4 +1,5 @@
-#About BnkyBk
+#About Woolli
 
 ##Overview
-BnkyBk is an web application that allows you to commemorate your baby's progress between birth and the age of 5. BnkyBk has two main features: allows you to create a timeline to which you can add events and upload photos. It also allows you to measure your baby as they grow, charting their progress against national averages.
+
+Woolli is an online baby book designed to store memories of your child's growth during his/her early years. It enables users to maintain an age old tradition in a modern format.
