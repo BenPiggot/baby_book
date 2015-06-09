@@ -6,11 +6,15 @@
   <small>Add an event to create a timeline for <%= @baby.name %></small></h1>
   <%= link_to "Make an Event", new_baby_event_path, :class => "btn btn-success", :id => "no-event-btn", :data => {toggle: "modal", target: "#eventModal"} %>
   <br>
-  <%= image_tag("wooli_front_purple.png") %>
-  <p class="timeline-start">Click the "Make an Event" button to add events and photos to the timeline.
-  Your baby's timeline will start at his/her birthday and every event will create a new tick on the timeline according to the date that you put in.
-  Woolli will store your photos and information so that you can always come back to reminisce about <%= @baby.name %>'s first steps.</p>
+  <%= image_tag("wooli_front_purple.png", :style => "margin-top: 15px;") %>
   <br>
+  <ul style="margin-top: 30px">
+    <li>Click "Make an Event" to add an event.</li>
+    <li>Add comments or pictures for the event.</li>
+    <li>The timeline starts on your child's birthdate.</li>
+    <li>Woolli remembers everything so you can too!</li>
+  </ul>
+
 </div>
 
 <% else %>

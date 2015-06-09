@@ -1,5 +1,9 @@
 /****** GENERAL SITE STYLES *******/
 
+h1 {
+  margin-bottom: 30px;
+}
+
 body {
   min-height: 100%;
   max-width: 100%;
@@ -60,6 +64,28 @@ li {
 }
 
 
+
+/**** SPLASH PAGE ****/
+
+.splash-pg-list {
+  padding-left: 0;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.welcome-title {
+  height: 89vh;
+  width: 110%;
+  left: -5%;
+  text-align: center;
+}
+
+.welcome-message {
+  margin-top: 2%;
+}
+/***********************/
+
+
 //============login footer fix
 
 input.btn.btn-info {
@@ -67,7 +93,8 @@ input.btn.btn-info {
 }
 
 a.btn.btn-primary.btn-md.fa.fa-facebook-official {
-  margin-bottom: 70px;
+  margin-bottom: 40px;
+  margin-top: 40px;
 }
 
 
@@ -302,21 +329,6 @@ body > div > div.btn-margins-large > div.social-container > div > div > a.pretty
       box-shadow: inset #ccc 0px 0px 6px 0px;
   }
 /***************************/
-
-
-
-/**** SPLASH PAGE ****/
-.welcome-title {
-  height: 89vh;
-  width: 110%;
-  left: -5%;
-  text-align: center;
-}
-
-.welcome-message {
-  margin-top: 2%;
-}
-/***********************/
 
 
 
