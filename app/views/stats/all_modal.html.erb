@@ -10,6 +10,8 @@
             <th>Date</th>
             <th>Weight (kg)</th>
             <th>Height (cm)</th>
+            <th>Edit</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <% @stats.each do |stat| %>
@@ -19,6 +21,8 @@
             <td><strong><%= stat.date.strftime("%m/%d/%Y") %></strong></td>
             <td><%= stat.weight %></td>
             <td><%= stat.height %></td>
+            <td><%= link_to "", edit_baby_stat_path(@baby, stat.id), :class => "btn btn-default btn-xs glyphicon glyphicon-pencil modal-glyphs" %></td>
+            <td><%= link_to "", baby_stat_path(@baby, stat.id), :class => "btn btn-default btn-xs glyphicon glyphicon-trash modal-glyphs", :method => :delete %></td>
           <% end %>
           </tr>
         </tbody>

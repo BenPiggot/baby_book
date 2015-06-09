@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
     get 'babies/:baby_id/stats/all-modal' => 'stats#all_modal', as: 'baby_stat_modal'
 
+    get 'babies/:baby_id/stats/:id/edit' => 'stats#edit'
+
     resources :babies do
       resources :events do
         resources :media

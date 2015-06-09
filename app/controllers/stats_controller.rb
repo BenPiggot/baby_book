@@ -56,6 +56,26 @@ class StatsController < ApplicationController
     render layout: false
   end
 
+
+  def edit
+    @baby = Baby.find(params[:baby_id])
+    @stat = @baby.stats.find(params[:id])
+
+  end
+
+  def update
+    @stat = Stat.find(params[:id])
+    @stat.update(stat_params)
+    redirect_to baby_stats_path
+  end
+
+  def destroy
+    @stat = Stat.find(params[:id])
+    @stat.destroy
+
+    redirect_to baby_stats_path
+  end
+
   private
 
   def stat_params
