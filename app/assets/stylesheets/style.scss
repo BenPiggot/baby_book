@@ -624,7 +624,7 @@ footer{
   margin-top: 150px;
   padding: 20px 0;
   text-align: center;
-  background-image: image-url(verticalStripes.jpg);
+  background-image: url(verticalStripes.jpg);
 }
 
 footer span.copyright {
@@ -669,7 +669,7 @@ ul.social-buttons li a:active {
 /******** BOOTSTRAP OVERRIDES ************/
 
 .navbar-default {
-    background-image: image-url(verticalStripes.jpg);
+    background-image: url(verticalStripes.jpg);
     margin-bottom: 50px;
 }
 
