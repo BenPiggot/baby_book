@@ -705,8 +705,8 @@ ul.social-buttons li a:active {
 
 /******** CUSTOM MEDIA QUERIES ************/
 
-@media screen and (max-width: 500px) {
+@media screen and (max-height: 400px) {
   #splash-bottom-margin {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 }
