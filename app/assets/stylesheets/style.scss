@@ -88,6 +88,11 @@ li {
 .welcome-message {
   margin-top: 2%;
 }
+
+#splash-bottom-margin {
+  margin-bottom: 50px;
+}
+
 /***********************/
 
 
@@ -696,3 +701,12 @@ ul.social-buttons li a:active {
    height: 400px;
 }
 /**************************/
+
+
+/******** CUSTOM MEDIA QUERIES ************/
+
+@media screen and (max-width: 500px) {
+  #splash-bottom-margin {
+    margin-bottom: 20px;
+  }
+}
