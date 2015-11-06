@@ -71,18 +71,30 @@ li {
 
 /**** SPLASH PAGE ****/
 
+.splash-pg-header {
+  font-size: 48px;
+  font-weight: 600;
+}
+
+.splash-pg-header > p  {
+  margin-top: 2px;
+  font-size: 24px;
+}
 .splash-pg-list {
   margin-top: 0;
-  padding-left: 0;
+  margin-bottom: 30px;
+  margin-left: 20%;
+  margin-right: 20%;
   font-size: 16px;
-  display: block;
 }
 
 .welcome-title {
-  height: 89vh;
+  height: 100%;
   width: 110%;
   left: -5%;
   text-align: center;
+  overflow: hidden; 
+  word-wrap: break-word;
 }
 
 .welcome-message {
@@ -95,12 +107,12 @@ li {
 //============login footer fix
 
 input.btn.btn-info {
-  margin-bottom: 70px;
+  margin-bottom: 0px;
 }
 
 a.btn.btn-primary.btn-md.fa.fa-facebook-official {
   margin-bottom: 40px;
-  margin-top: 40px;
+  margin-top: 15px;
 }
 
 
@@ -179,7 +191,10 @@ a.edit-link {
 }
 
 .new-user-list {
+  font-size: 16px;
   padding-left: 0;
+  margin-left: 20%;
+  margin-right: 20%
 }
 
 .fist-timer-btn {
@@ -639,7 +654,7 @@ ul > h4.baby-name {
 
 footer{
   border-top: 5px solid pink;
-  margin-top: 150px;
+  margin-top: 0px;
   padding: 20px 0;
   text-align: center;
   background-image: image-url("verticalStripes.jpg");

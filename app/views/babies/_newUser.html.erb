@@ -1,20 +1,17 @@
 <div class="first-time-user text-center">
-  <h2 style="margin-bottom: 15px;">Welcome to Woolli</h2>
+  <h1 style="font-weight: 600; margin-bottom: 15px; margin-top: 0px;">Welcome to Woolli</h1>
 
-  <p style="margin-bottom: 25px">Thank you for joining, now let the fun begin!</p>
+  <p style="font-weight: 600; margin-bottom: 25px">Thank you for joining, now let the fun begin!</p>
   <p>Woolli allows you to create a virtual baby book to save all of those precious moments. The application allows for easy organization and presentation of the growth of your child. The timeline can be used to keep track of special events or notes without the need of requiring pictures to further enhance your experience. Woolli also allows you to keep track of your baby's growth. So update your child's measurements often and see instant comparisons with the national averages.</p>
 
   <%= image_tag("wooli_front_purple.png", class: "new-user-image") %>
 
-  <h3>Start Now!</h3>
-
   <%= link_to "New Baby", new_baby_path, :data => {toggle: 'modal', target: '#babyModal'}, :class => "btn btn-primary btn-lg fist-timer-btn"  %>
 
-  <ul class="new-user-list">
-    <li>Simply press New Baby to add your child.</li>
-    <li>Add all photos and events in the timeline section.</li>
-    <li>Add all measurements in the measurements section.</li>
-  </ul>
+  <div class="new-user-list">
+    Simply press New Baby to add your child &nbsp &bull; &nbsp Add all photos and events in the timeline section
+     &nbsp &bull; &nbsp Add all measurements in the measurements section
+  </div>
 
-  <h4>Have fun and enjoy your baby's new Woolli!</h4>
+  <h4 style="margin-top: 20px; margin-bottom: 40px; font-weight: 600;">Have fun and enjoy your baby's new Woolli!</h4>
 </div>
