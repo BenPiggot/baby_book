@@ -720,4 +720,10 @@ ul.social-buttons li a:active {
 }
 /**************************/
 
-
+@media (max-width: 650px) {
+  .float-right {
+    float: none;
+    margin-top: 30px;
+    margin-left: 0;
+  }
+}
