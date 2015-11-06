@@ -72,6 +72,7 @@ li {
 /**** SPLASH PAGE ****/
 
 .splash-pg-header {
+  margin-top: 25px;
   font-size: 48px;
   font-weight: 600;
 }
@@ -81,11 +82,16 @@ li {
   font-size: 24px;
 }
 .splash-pg-list {
-  margin-top: 0;
+  margin-top: 10px;
   margin-bottom: 30px;
   margin-left: 20%;
   margin-right: 20%;
   font-size: 16px;
+}
+
+.splash-social-btn {
+
+  margin-bottom: -30px;
 }
 
 .welcome-title {
@@ -112,7 +118,7 @@ input.btn.btn-info {
 
 a.btn.btn-primary.btn-md.fa.fa-facebook-official {
   margin-bottom: 40px;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 
