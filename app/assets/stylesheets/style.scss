@@ -720,6 +720,8 @@ ul.social-buttons li a:active {
 }
 /**************************/
 
+
+/********* MEDIA QUERIES ***********/
 @media (max-width: 650px) {
   .float-right {
     float: none;
@@ -727,3 +729,20 @@ ul.social-buttons li a:active {
     margin-left: 0;
   }
 }
+
+@media (max-width: 325px) {
+  .social-container > .btn-info {
+    margin-top: 10px;
+  }
+
+  .source {
+    width: 250px;
+  }
+
+  .social-container .links a {
+    margin: 0 10px;
+  }
+}
+
+
+/**********************************/
